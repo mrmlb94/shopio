@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Item Details</title>
+</head>
+<body>
+
+<h2>Item Details</h2>
+
+<div>
+    <p><strong>ID:</strong> <span th:text="${item.id}"></span></p>
+    <p><strong>Name:</strong> <span th:text="${item.name}"></span></p>
+    <p><strong>Price:</strong> <span th:text="${item.price}"></span></p>
+    <p><strong>Stock:</strong> <span th:text="${item.stock}"></span></p>
+</div>
+
+<div>
+    <a th:href="@{'/items/edit/' + ${item.id}}">Edit</a> |
+    <a th:href="@{'/items/delete/' + ${item.id}}">Delete</a> |
+    <a th:href="@{/items}">Back to List</a>
+</div>
+
+</body>
+</html>

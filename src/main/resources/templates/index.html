@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Items</title>
+</head>
+<body>
+
+    <div>
+        <a th:href="@{/items/new}">Add New Item</a>
+    </div>
+
+    <!-- IF EMPTY -->
+    <div th:if="${items.empty}">
+        <div>No items found.</div>
+    </div>
+
+    <!-- IF NOT EMPTY -->
+    <div th:unless="${items.empty}">
+        <table id="items_table">
+            <caption>Item List</caption>
+            <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="item : ${items}">
+                    <td th:text="${item.id}"></td>
+                    <td th:text="${item.name}"></td>
+                    <td th:text="${item.price}"></td>
+                    <td>
+                        <a th:href="@{'/items/edit/' + ${item.id}}">Edit</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</body>
+</html>
