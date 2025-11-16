@@ -1,44 +1,50 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8"/>
-    <title>Items</title>
+    <meta charset="UTF-8">
+    <title>Online Shop - Items</title>
 </head>
 <body>
+<h1>Online Shop</h1>
 
-    <div>
-        <a th:href="@{/items/new}">Add New Item</a>
-    </div>
+<p th:text="${message}"></p>
 
-    <!-- IF EMPTY -->
-    <div th:if="${items.empty}">
-        <div>No items found.</div>
-    </div>
+<a th:href="@{/new}">Create New Item</a>
 
-    <!-- IF NOT EMPTY -->
-    <div th:unless="${items.empty}">
-        <table id="items_table">
-            <caption>Item List</caption>
-            <thead>
-                <tr>
-                    <th scope="col">ID</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Price</th>
-                    <th scope="col">Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr th:each="item : ${items}">
-                    <td th:text="${item.id}"></td>
-                    <td th:text="${item.name}"></td>
-                    <td th:text="${item.price}"></td>
-                    <td>
-                        <a th:href="@{'/items/edit/' + ${item.id}}">Edit</a>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
+<!-- Only show table when shopitems is not null and not empty -->
+<div th:if="${shopitems != null and !shopitems.empty}">
+    <table border="1">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="item : ${shopitems}">
+            <td th:text="${item.id}">ID</td>
+            <td th:text="${item.name}">Name</td>
+            <td th:text="${item.description}">Description</td>
+            <td th:text="${item.price}">Price</td>
+            <td th:text="${item.quantity}">Quantity</td>
+            <td>
+                <a th:href="@{'/view/' + ${item.id}}">View</a>
+                <a th:href="@{'/edit/' + ${item.id}}">Edit</a>
+                <a th:href="@{'/delete/' + ${item.id}}">Delete</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<!-- Message or placeholder when list is null or empty -->
+<div th:if="${shopitems == null or shopitems.empty}">
+    <p th:text="${message}">No shop items found.</p>
+</div>
 
 </body>
 </html>

@@ -1,0 +1,17 @@
+version: '3.8'
+services:
+  mongo:
+    image: mongo:latest
+    container_name: shop_items
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+    networks:
+      - shop-network
+
+networks:
+  shop-network:
+
+volumes:
+  mongo-data:

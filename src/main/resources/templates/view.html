@@ -1,25 +1,24 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8"/>
-    <title>Item Details</title>
+    <meta charset="UTF-8">
+    <title>View Item</title>
 </head>
 <body>
+<h1>View Shop Item</h1>
 
-<h2>Item Details</h2>
+<p th:text="${message}"></p>
 
-<div>
-    <p><strong>ID:</strong> <span th:text="${item.id}"></span></p>
-    <p><strong>Name:</strong> <span th:text="${item.name}"></span></p>
-    <p><strong>Price:</strong> <span th:text="${item.price}"></span></p>
-    <p><strong>Stock:</strong> <span th:text="${item.stock}"></span></p>
+<div th:if="${shopitem != null}">
+    <p><strong>ID:</strong> <span th:text="${shopitem.id}">ID</span></p>
+    <p><strong>Name:</strong> <span th:text="${shopitem.name}">Name</span></p>
+    <p><strong>Description:</strong> <span th:text="${shopitem.description}">Description</span></p>
+    <p><strong>Price:</strong> <span th:text="${shopitem.price}">Price</span></p>
+    <p><strong>Quantity:</strong> <span th:text="${shopitem.quantity}">Quantity</span></p>
 </div>
 
-<div>
-    <a th:href="@{'/items/edit/' + ${item.id}}">Edit</a> |
-    <a th:href="@{'/items/delete/' + ${item.id}}">Delete</a> |
-    <a th:href="@{/items}">Back to List</a>
-</div>
+<a th:href="@{/}">Back to list</a>
+<a th:if="${shopitem != null}" th:href="@{'/edit/' + ${shopitem.id}}">Edit</a>
 
 </body>
 </html>
