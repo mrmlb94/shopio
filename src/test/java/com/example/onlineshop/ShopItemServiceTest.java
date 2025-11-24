@@ -54,10 +54,12 @@ class ShopItemServiceTest {
         List<ShopItem> actualItems = shopItemService.getAllItems();
 
         // Assert
-        assertThat(actualItems).isNotNull();
-        assertThat(actualItems).hasSize(2);
-        assertThat(actualItems).containsExactlyInAnyOrder(testItem1, testItem2);
-        verify(shopItemRepository, times(1)).findAll();
+        assertThat(actualItems)
+        .isNotNull()
+        .hasSize(2)
+        .containsExactlyInAnyOrder(testItem1, testItem2);
+    verify(shopItemRepository, times(1)).findAll();
+
     }
 
     @Test
@@ -70,9 +72,11 @@ class ShopItemServiceTest {
         List<ShopItem> actualItems = shopItemService.getAllItems();
 
         // Assert
-        assertThat(actualItems).isNotNull();
-        assertThat(actualItems).isEmpty();
-        verify(shopItemRepository, times(1)).findAll();
+        assertThat(actualItems)
+        .isNotNull()
+        .isEmpty();
+    verify(shopItemRepository, times(1)).findAll();
+
     }
 
     @Test

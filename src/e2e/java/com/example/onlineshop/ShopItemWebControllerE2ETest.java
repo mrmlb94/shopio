@@ -27,6 +27,7 @@ public class ShopItemWebControllerE2ETest {
 
     @BeforeClass
     public static void setupClass() {
+    // for now no class level setup required , each test uses @Before setup ...
 
     }
 

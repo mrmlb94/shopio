@@ -298,7 +298,7 @@
 			        <!-- Tests to exclude -->
 			        <excludedTestClasses>
 			            <param>**/*IT</param>
-			            <param>**/*E2E</param>
+			            <param>**/*E2ETest</param>
 			        </excludedTestClasses>
 			        
 			        <outputFormats>

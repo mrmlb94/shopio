@@ -71,11 +71,16 @@ class ShopItemTest {
         String result = item.toString();
 
         // Assert
-        assertThat(result).contains("id='456'");
-        assertThat(result).contains("name='Keyboard'");
-        assertThat(result).contains("description='Mechanical'");
-        assertThat(result).contains("price=150.0");
-        assertThat(result).contains("quantity=10");
+        
+        // Soanr code smell is gone here : 
+        assertThat(result).contains(
+        	    "id='456'",
+        	    "name='Keyboard'",
+        	    "description='Mechanical'",
+        	    "price=150.0",
+        	    "quantity=10"
+        	);
+
     }
 
     @Test
@@ -178,7 +183,6 @@ class ShopItemTest {
         String other = "Not a ShopItem";
 
         // Act & Assert
-        //assertThat(item.equals(other)).isFalse();
         assertThat(item).isNotEqualTo(other);
 
     }
@@ -194,7 +198,7 @@ class ShopItemTest {
         item2.setId("1");
 
         // Act & Assert
-        assertThat(item1.hashCode()).isEqualTo(item2.hashCode());
+        assertThat(item1).hasSameHashCodeAs(item2);
     }
 
     @Test
