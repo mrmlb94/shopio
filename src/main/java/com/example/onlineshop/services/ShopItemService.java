@@ -1,6 +1,5 @@
 package com.example.onlineshop.services;
 
-
 import com.example.onlineshop.model.ShopItem;
 import com.example.onlineshop.repositories.ShopItemRepository;
 import org.springframework.stereotype.Service;
@@ -38,3 +37,4 @@ public class ShopItemService {
         shopItemRepository.deleteById(id);
     }
 }
+
