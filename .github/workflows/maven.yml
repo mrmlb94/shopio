@@ -17,33 +17,40 @@ jobs:
         java: [21]
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
-      - name: Set up JDK
-        uses: actions/setup-java@v3
+      - name: Set up JDK with Maven cache
+        uses: actions/setup-java@v4
         with:
           distribution: temurin
           java-version: ${{ matrix.java }}
+          cache: 'maven'
 
-      - name: Cache Maven packages
-        uses: actions/cache@v3
+      - name: Build with Maven
+        run: mvn clean verify
+
+      - name: Upload Test Reports
+        if: always()
+        uses: actions/upload-artifact@v4
         with:
-          path: ~/.m2/repository
-          key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
-          restore-keys: ${{ runner.os }}-m2-
-
-      - name: Build and run tests
-        run: mvn clean test
+          name: test-reports-${{ matrix.os }}-java${{ matrix.java }}
+          path: |
+            target/surefire-reports/
+            target/failsafe-reports/
+            target/jacoco/
+            target/pit-reports/
+          retention-days: 30
 
       - name: SonarCloud Scan
+        if: matrix.os == 'ubuntu-latest' && matrix.java == 21
         run: |
-          mvn -B verify sonar:sonar \
+          mvn sonar:sonar \
             -Dsonar.organization=mrmlb94 \
             -Dsonar.projectKey=mrmlb94_shopio \
             -Dsonar.host.url=https://sonarcloud.io \
-            -Dsonar.login=${SONAR_TOKEN}
+            -Dsonar.token=${SONAR_TOKEN}
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

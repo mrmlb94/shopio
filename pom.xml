@@ -320,7 +320,12 @@
             <param>**/*IT</param>
             <param>**/*E2ETest</param>
         </excludedTestClasses>
-        
+        <!-- Skip surefire argLine to avoid Jacoco conflict -->
+        <useClasspathFile>true</useClasspathFile>
+        <jvmArgs>
+            <value>-Xmx1024m</value>
+        </jvmArgs>
+
         <outputFormats>
             <outputFormat>XML</outputFormat>
             <outputFormat>HTML</outputFormat>
