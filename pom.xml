@@ -157,11 +157,7 @@
             <version>5.9.2</version>
             <scope>test</scope>
         </dependency>
-        <dependency>
-		    <groupId>org.pitest</groupId>
-		    <artifactId>pitest-junit5-plugin</artifactId>
-		    <version>1.2.1</version>
-		</dependency>
+
 
     </dependencies>
 
@@ -216,6 +212,12 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <version>${spring-boot.maven.plugin.version}</version>
             </plugin>
+            
+            
+            
+            
+            
+            
             <plugin>
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
@@ -251,6 +253,10 @@
                     </execution>
                 </executions>
             </plugin>
+            
+            
+            
+            
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>build-helper-maven-plugin</artifactId>
@@ -271,43 +277,64 @@
                     </execution>
                 </executions>
             </plugin>
-			    <plugin>
-			    <groupId>org.pitest</groupId>
-			    <artifactId>pitest-maven</artifactId>
-			    <version>${pitest.version}</version>
-			    <executions>
-			        <execution>
-			            <id>pitest</id>
-			            <phase>verify</phase>
-			            <goals>
-			                <goal>mutationCoverage</goal>
-			            </goals>
-			        </execution>
-			    </executions>
-			    <configuration>
-			        <!-- Classes to mutate (production code) -->
-			        <targetClasses>
-			            <param>com.example.onlineshop.*</param>
-			        </targetClasses>
-			        
-			        <!-- Optional: which tests to run -->
-			        <targetTests>
-			            <param>com.example.onlineshop.*Test</param>
-			        </targetTests>
-			        
-			        <!-- Tests to exclude -->
-			        <excludedTestClasses>
-			            <param>**/*IT</param>
-			            <param>**/*E2ETest</param>
-			        </excludedTestClasses>
-			        
-			        <outputFormats>
-			            <outputFormat>XML</outputFormat>
-			        </outputFormats>
-			        <timestampedReports>false</timestampedReports>
-			        <failWhenNoMutations>false</failWhenNoMutations>
-			    </configuration>
-			</plugin>
+            
+            
+            
+            
+            <plugin>
+    <groupId>org.pitest</groupId>
+    <artifactId>pitest-maven</artifactId>
+    <version>${pitest.version}</version>
+    <dependencies>
+        <dependency>
+            <groupId>org.pitest</groupId>
+            <artifactId>pitest-junit5-plugin</artifactId>
+            <version>1.2.1</version>
+        </dependency>
+    </dependencies>
+    <executions>
+        <execution>
+            <id>pitest</id>
+            <phase>verify</phase>
+            <goals>
+                <goal>mutationCoverage</goal>
+            </goals>
+        </execution>
+    </executions>
+    <configuration>
+        <targetClasses>
+            <param>com.example.onlineshop.*</param>
+        </targetClasses>
+        
+        <targetTests>
+            <param>com.example.onlineshop.*Test</param>
+        </targetTests>
+            <mutators>
+        <mutator>DEFAULTS</mutator>
+    </mutators>
+    <threads>4</threads>
+    <timeoutConstant>5000</timeoutConstant>
+    <verbose>false</verbose>
+
+        <excludedTestClasses>
+            <param>**/*IT</param>
+            <param>**/*E2ETest</param>
+        </excludedTestClasses>
+        
+        <outputFormats>
+            <outputFormat>XML</outputFormat>
+            <outputFormat>HTML</outputFormat>
+        </outputFormats>
+        <timestampedReports>false</timestampedReports>
+        <failWhenNoMutations>false</failWhenNoMutations>
+    </configuration>
+</plugin>
+
+
+
+
+
+
 
         </plugins>
         <pluginManagement>
@@ -415,21 +442,6 @@
                                 <server.port>${tomcat.http.port}</server.port>
                             </systemPropertyVariables>
                         </configuration>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-        <profile>
-            <id>mutation</id>
-            <activation>
-                <activeByDefault>false</activeByDefault>
-            </activation>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.pitest</groupId>
-                        <artifactId>pitest-maven</artifactId>
-                        <version>${pitest.version}</version>
                     </plugin>
                 </plugins>
             </build>
