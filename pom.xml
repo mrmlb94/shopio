@@ -269,30 +269,44 @@
                     </execution>
                 </executions>
             </plugin>
-            <plugin>
-                <groupId>org.pitest</groupId>
-                <artifactId>pitest-maven</artifactId>
-                <version>${pitest.version}</version>
-                <executions>
-                    <execution>
-                        <id>pitest</id>
-                        <phase>verify</phase>
-                        <goals>
-                            <goal>mutationCoverage</goal>
-                        </goals>
-                    </execution>
-                </executions>
-                <configuration>
-                    <targetClasses>
-                        <param>com.example.*</param>
-                    </targetClasses>
-                    <outputFormats>
-                        <outputFormat>XML</outputFormat>
-                    </outputFormats>
-                    <timestampedReports>false</timestampedReports>
-                    <failWhenNoMutations>false</failWhenNoMutations>
-                </configuration>
-            </plugin>
+			    <plugin>
+			    <groupId>org.pitest</groupId>
+			    <artifactId>pitest-maven</artifactId>
+			    <version>${pitest.version}</version>
+			    <executions>
+			        <execution>
+			            <id>pitest</id>
+			            <phase>verify</phase>
+			            <goals>
+			                <goal>mutationCoverage</goal>
+			            </goals>
+			        </execution>
+			    </executions>
+			    <configuration>
+			        <!-- Classes to mutate (production code) -->
+			        <targetClasses>
+			            <param>com.example.onlineshop.*</param>
+			        </targetClasses>
+			        
+			        <!-- Optional: which tests to run -->
+			        <targetTests>
+			            <param>com.example.onlineshop.*Test</param>
+			        </targetTests>
+			        
+			        <!-- Tests to exclude -->
+			        <excludedTestClasses>
+			            <param>**/*IT</param>
+			            <param>**/*E2E</param>
+			        </excludedTestClasses>
+			        
+			        <outputFormats>
+			            <outputFormat>XML</outputFormat>
+			        </outputFormats>
+			        <timestampedReports>false</timestampedReports>
+			        <failWhenNoMutations>false</failWhenNoMutations>
+			    </configuration>
+			</plugin>
+
         </plugins>
         <pluginManagement>
             <plugins>
