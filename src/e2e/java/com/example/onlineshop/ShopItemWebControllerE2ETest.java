@@ -17,7 +17,7 @@ import org.springframework.web.client.RestTemplate;
 
 import com.example.onlineshop.model.ShopItem;
 
-public class ShopItemWebControllerE2E {
+public class ShopItemWebControllerE2ETest {
 
     private static int port = Integer.parseInt(System.getProperty("server.port", "8080"));
     private static String baseUrl = "http://localhost:" + port;

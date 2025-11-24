@@ -1,5 +1,10 @@
 package com.example.onlineshop;
 
+
+
+// this test if not a real e2e test , 
+// I added it to check if TDD is ready to start or not ! 
+// ignored in calculations ... and codcov also
 import static org.hamcrest.CoreMatchers.equalTo;
 
 import org.junit.jupiter.api.Test;

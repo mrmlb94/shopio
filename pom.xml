@@ -405,7 +405,7 @@
                                 </goals>
                                 <configuration>
                                     <includes>
-                                        <include>**/*E2E.java</include>
+                                        <include>**/*E2ETest.java</include>
                                     </includes>
                                 </configuration>
                             </execution>

@@ -39,9 +39,9 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @Testcontainers
-class ProductWebControllerE2E {
+class ProductWebControllerE2ETest {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(ProductWebControllerE2E.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(ProductWebControllerE2ETest.class);
     private static final int TIMEOUT_SECONDS = 10;
     private static final String MONGO_IMAGE = "mongo:7.0";
 
@@ -130,8 +130,10 @@ class ProductWebControllerE2E {
         
         String pageSource = driver.getPageSource();
         
-        assertThat(pageSource).contains("Laptop Pro");
-        assertThat(pageSource).contains("1299.99");
+        assertThat(pageSource)
+        .contains("Laptop Pro")
+        .contains("1299.99");
+
         
         LOGGER.info("testCreateNewProduct completed successfully");
     }
@@ -170,9 +172,11 @@ class ProductWebControllerE2E {
         
         String pageSource = driver.getPageSource();
         
-        assertThat(pageSource).contains("Gaming Mouse Pro");
-        assertThat(pageSource).contains("89.99");
-        
+        // because of damn Sonar issues !
+        assertThat(pageSource)
+        .contains("Gaming Mouse Pro")
+        .contains("89.99");
+
         LOGGER.info("testEditProduct completed successfully");
     }
 
@@ -200,8 +204,11 @@ class ProductWebControllerE2E {
         
         String pageSource = driver.getPageSource();
         
-        assertThat(pageSource).doesNotContain("Keyboard");
-        assertThat(pageSource).doesNotContain("129.99");
+        // because of damn Sonar issues !
+        assertThat(pageSource)
+        .doesNotContain("Keyboard")
+        .doesNotContain("129.99");
+
         
         LOGGER.info("testDeleteProduct completed successfully");
     }
@@ -232,10 +239,12 @@ class ProductWebControllerE2E {
         
         String pageSource = driver.getPageSource();
         
-        assertThat(pageSource).contains("Monitor 4K");
-        assertThat(pageSource).contains("Ultra HD 4K monitor with HDR support");
-        assertThat(pageSource).contains("599.99");
-        assertThat(pageSource).contains("20");
+        assertThat(pageSource)
+        .contains("Monitor 4K")
+        .contains("Ultra HD 4K monitor with HDR support")
+        .contains("599.99")
+        .contains("20");
+
         
         LOGGER.info("testViewProductDetails completed successfully");
     }
@@ -264,8 +273,16 @@ class ProductWebControllerE2E {
         viewLink.click();
         wait.until(ExpectedConditions.urlContains("/view/"));
         
+        
+        // as Sonar said !
         String viewPageSource = driver.getPageSource();
-        assertThat(viewPageSource).contains("Workflow Tablet", "Android tablet", "399.99", "12");
+        assertThat(viewPageSource)
+        .contains("Workflow Tablet")
+        .contains("Android tablet")
+        .contains("399.99")
+        .contains("12");
+        
+        
         LOGGER.debug("Viewed item details");
 
         // S3 Edit item (from view page)
