@@ -120,19 +120,16 @@
     <dependency>
         <groupId>org.junit.platform</groupId>
         <artifactId>junit-platform-launcher</artifactId>
-        <version>${junit-platform.version}</version>
         <scope>test</scope>
     </dependency>
     <dependency>
         <groupId>org.junit.platform</groupId>
         <artifactId>junit-platform-engine</artifactId>
-        <version>${junit-platform.version}</version>
         <scope>test</scope>
     </dependency>
     <dependency>
         <groupId>org.junit.platform</groupId>
         <artifactId>junit-platform-commons</artifactId>
-        <version>${junit-platform.version}</version>
         <scope>test</scope>
     </dependency>
 
@@ -196,10 +193,8 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <version>${surefire.version}</version>
                 <configuration>
                     <skipTests>${skip.unit-tests}</skipTests>
-			        <!--<argLine>${argLine}</argLine>-->
                     <includes>
                         <include>**/*Test.java</include>
                         <include>**/*Tests.java</include>
@@ -213,7 +208,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-failsafe-plugin</artifactId>
-                <version>${failsafe.version}</version>
+                <!--<version>${failsafe.version}</version>-->
                 <configuration>
                     <skipTests>${skip.integration-tests}</skipTests>
 			       <!-- <argLine>${argLine}</argLine>-->
@@ -233,7 +228,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>${maven.compiler.plugin.version}</version>
+                <!--<version>${maven.compiler.plugin.version}</version>-->
                 <configuration>
                     <source>${java.version}</source>
                     <target>${java.version}</target>
@@ -244,7 +239,7 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
-                <version>${spring-boot.maven.plugin.version}</version>
+                <!--<version>${spring-boot.maven.plugin.version}</version>-->
             </plugin>
             
             
@@ -298,7 +293,7 @@
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>build-helper-maven-plugin</artifactId>
-                <version>3.5.0</version>
+                <!--<version>3.5.0</version>-->
                 <executions>
                     <execution>
                         <id>add-test-source</id>
@@ -343,8 +338,10 @@
     
     <!-- Exclude Spring integration tests -->
     <excludedTestClasses>
-        <param>**/*IT</param>
-        <param>**/*E2ETest</param>
+		<param>com.example.onlineshop.*IT</param>
+        <param>com.example.onlineshop.*E2ETest</param>
+        <param>com.example.onlineshop.ShopItemWebControllerE2ETest</param>
+        <param>com.example.onlineshop.*ApplicationTests</param>
         <param>**/*ApplicationTests</param>
         <param>**/*ControllerIT</param>
         <param>**/*RestControllerIT</param>
@@ -400,7 +397,9 @@
                     </dependencies>
                     <configuration>
                         <repoToken>${coveralls.repo.token}</repoToken>
-                        <jacocoReportPath>${project.build.directory}/jacoco/jacoco.xml</jacocoReportPath>
+						<jacocoReports>
+						    <jacocoReport>${project.build.directory}/jacoco/jacoco.xml</jacocoReport>
+						</jacocoReports>
                     </configuration>
                 </plugin>
             </plugins>
