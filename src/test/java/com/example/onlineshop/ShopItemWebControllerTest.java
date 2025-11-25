@@ -169,7 +169,6 @@ class ShopItemWebControllerTest {
     @DisplayName("POST /save should insert new item when id is null")
     void testSaveNewItem() throws Exception {
         // Arrange
-//        ShopItem newItem = new ShopItem("Keyboard", "Mechanical keyboard", 150.00, 10);
         ShopItem savedItem = new ShopItem("Keyboard", "Mechanical keyboard", 150.00, 10);
         savedItem.setId("3");
 
