@@ -36,9 +36,7 @@
         <sonar.junit.reportPaths>${project.build.directory}/surefire-reports,${project.build.directory}/failsafe-reports</sonar.junit.reportPaths>
         <sonar.sources>pom.xml,${project.build.sourceDirectory},${basedir}/src/main/resources</sonar.sources>
         <sonar.tests>${project.build.testSourceDirectory},${basedir}/src/it/java,${basedir}/src/e2e/java</sonar.tests>
-		<sonar.coverage.exclusions>
-		    **/*Application.*,**/model/*,**/controllers/TestController.*
-		</sonar.coverage.exclusions>
+		<sonar.coverage.exclusions>**/*Application.*,**/model/*,**/controllers/TestController.*,**/TestControllerE2E.*,**/TestControllerIT.*</sonar.coverage.exclusions>
         <sonar.issue.ignore.multicriteria>e11,e12</sonar.issue.ignore.multicriteria>
         <sonar.issue.ignore.multicriteria.e11.ruleKey>java:S2699</sonar.issue.ignore.multicriteria.e11.ruleKey>
         <sonar.issue.ignore.multicriteria.e11.resourceKey>**/*ApplicationTests.java</sonar.issue.ignore.multicriteria.e11.resourceKey>
