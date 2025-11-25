@@ -208,10 +208,8 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-failsafe-plugin</artifactId>
-                <!--<version>${failsafe.version}</version>-->
                 <configuration>
                     <skipTests>${skip.integration-tests}</skipTests>
-			       <!-- <argLine>${argLine}</argLine>-->
                     <includes>
                         <include>**/*IT.java</include>
                     </includes>
@@ -228,7 +226,6 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <!--<version>${maven.compiler.plugin.version}</version>-->
                 <configuration>
                     <source>${java.version}</source>
                     <target>${java.version}</target>
@@ -239,7 +236,6 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
-                <!--<version>${spring-boot.maven.plugin.version}</version>-->
             </plugin>
             
             
@@ -293,7 +289,6 @@
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>build-helper-maven-plugin</artifactId>
-                <!--<version>3.5.0</version>-->
                 <executions>
                     <execution>
                         <id>add-test-source</id>
